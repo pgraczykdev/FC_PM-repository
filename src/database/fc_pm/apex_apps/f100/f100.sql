@@ -36,11 +36,12 @@ prompt APPLICATION 100 - SC Preußen Münster
 --   Exported By:     FC_PM
 --   Flashback:       0
 --   Export Type:     Application Export
---     Pages:                      3
---       Items:                    3
---       Processes:                4
---       Regions:                  2
---       Buttons:                  1
+--     Pages:                      4
+--       Items:                    9
+--       Processes:                6
+--       Regions:                  7
+--       Buttons:                  4
+--       Dynamic Actions:          4
 --     Shared Components:
 --       Logic:
 --         Build Options:          1
@@ -104,8 +105,8 @@ wwv_imp_workspace.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>unistr('SC Preu\00DFen M\00FCnster')
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
-,p_files_version=>6
-,p_version_scn=>45081880006331
+,p_files_version=>14
+,p_version_scn=>45082237347731
 ,p_print_server_type=>'NATIVE'
 ,p_file_storage=>'DB'
 ,p_is_pwa=>'Y'
@@ -666,6 +667,35 @@ wwv_flow_imp_shared.create_app_static_file(
 );
 end;
 /
+prompt --application/shared_components/files/userregistration_js
+begin
+wwv_flow_imp.g_varchar2_table := wwv_flow_imp.empty_varchar2_table;
+wwv_flow_imp.g_varchar2_table(1) := '636C61737320526567697374726174696F6E207B0D0A202020207374617469632076616C69646174654163636F756E7444657461696C7328757365726E616D652C20656D61696C29207B0D0A20202020202020200D0A202020207D0D0A0D0A2020202073';
+wwv_flow_imp.g_varchar2_table(2) := '74617469632076616C696461746550617373776F72642870617373776F726429207B0D0A0D0A202020207D0D0A0D0A202020207374617469632076616C6964617465506572736F6E616C44657461696C732866697273744E616D652C206C6173744E616D';
+wwv_flow_imp.g_varchar2_table(3) := '6529207B0D0A0D0A202020207D0D0A0D0A2020200D0A7D';
+wwv_flow_imp_shared.create_app_static_file(
+ p_id=>wwv_flow_imp.id(8928741629651760)
+,p_file_name=>'UserRegistration.js'
+,p_mime_type=>'text/javascript'
+,p_file_charset=>'utf-8'
+,p_file_content => wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
+);
+end;
+/
+prompt --application/shared_components/files/userregistration_min_js
+begin
+wwv_flow_imp.g_varchar2_table := wwv_flow_imp.empty_varchar2_table;
+wwv_flow_imp.g_varchar2_table(1) := '636C61737320526567697374726174696F6E7B7374617469632076616C69646174654163636F756E7444657461696C7328612C74297B7D7374617469632076616C696461746550617373776F72642861297B7D7374617469632076616C69646174655065';
+wwv_flow_imp.g_varchar2_table(2) := '72736F6E616C44657461696C7328612C74297B7D7D';
+wwv_flow_imp_shared.create_app_static_file(
+ p_id=>wwv_flow_imp.id(8931301482719433)
+,p_file_name=>'UserRegistration.min.js'
+,p_mime_type=>'text/javascript'
+,p_file_charset=>'utf-8'
+,p_file_content => wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
+);
+end;
+/
 prompt --application/plugin_settings
 begin
 wwv_flow_imp_shared.create_plugin_setting(
@@ -1009,6 +1039,396 @@ wwv_flow_imp_page.create_page_plug(
 );
 end;
 /
+prompt --application/pages/page_09998
+begin
+wwv_flow_imp_page.create_page(
+ p_id=>9998
+,p_name=>'Sign up'
+,p_alias=>'SIGN-UP'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Registration'
+,p_autocomplete_on_off=>'OFF'
+,p_step_template=>1661186590416509825
+,p_page_template_options=>'#DEFAULT#:js-dialog-class-t-Drawer--pullOutEnd'
+,p_dialog_resizable=>'Y'
+,p_page_is_public_y_n=>'Y'
+,p_protection_level=>'C'
+,p_page_component_map=>'16'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8714419287792896)
+,p_plug_name=>'Sign up'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>4501440665235496320
+,p_plug_display_sequence=>10
+,p_location=>null
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8708932816751010)
+,p_plug_name=>'Account details'
+,p_parent_plug_id=>wwv_flow_imp.id(8714419287792896)
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>10
+,p_location=>null
+,p_plug_source=>'<p>Both username and email must be unique.</p>'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8709075435751011)
+,p_plug_name=>'Password'
+,p_parent_plug_id=>wwv_flow_imp.id(8714419287792896)
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>30
+,p_location=>null
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<ul>',
+'    <li>Password must be at least 12 characters.</li>',
+'    <li>Password must contain at least one digit.</li>',
+'    <li>Password must contain at least one special character.</li>',
+'</ul>'))
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8709107253751012)
+,p_plug_name=>'Personal data'
+,p_parent_plug_id=>wwv_flow_imp.id(8714419287792896)
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>40
+,p_location=>null
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8722914372792916)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>2126429139436695430
+,p_plug_display_sequence=>20
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'TEXT',
+  'show_line_breaks', 'Y')).to_clob
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8723374287792917)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(8722914372792916)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--large'
+,p_button_template_id=>4072362960822175091
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'CLOSE'
+,p_warn_on_unsaved_changes=>null
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8725586302792923)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(8722914372792916)
+,p_button_name=>'CREATE'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--large'
+,p_button_template_id=>4072362960822175091
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'NEXT'
+,p_warn_on_unsaved_changes=>null
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8708114968751002)
+,p_name=>'P9998_PASSWORD_CONFIRM'
+,p_is_required=>true
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(8709075435751011)
+,p_prompt=>'Confirm password'
+,p_display_as=>'NATIVE_PASSWORD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_field_template=>1609122147107268652
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'submit_when_enter_pressed', 'N')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8715145085792907)
+,p_name=>'P9998_USERNAME'
+,p_is_required=>true
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(8708932816751010)
+,p_prompt=>'Username'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>50
+,p_field_template=>1609122147107268652
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'disabled', 'N',
+  'submit_when_enter_pressed', 'N',
+  'subtype', 'TEXT',
+  'trim_spaces', 'BOTH')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8715517852792908)
+,p_name=>'P9998_EMAIL'
+,p_is_required=>true
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(8708932816751010)
+,p_prompt=>'Email'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>100
+,p_field_template=>1609122147107268652
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'disabled', 'N',
+  'submit_when_enter_pressed', 'N',
+  'subtype', 'EMAIL',
+  'trim_spaces', 'BOTH')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8715934352792908)
+,p_name=>'P9998_PASSWORD'
+,p_is_required=>true
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(8709075435751011)
+,p_prompt=>'Password '
+,p_display_as=>'NATIVE_PASSWORD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_field_template=>1609122147107268652
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'submit_when_enter_pressed', 'N')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8716349210792908)
+,p_name=>'P9998_FIRST_NAME'
+,p_is_required=>true
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(8709107253751012)
+,p_prompt=>'First Name'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>55
+,p_field_template=>1609122147107268652
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'disabled', 'N',
+  'submit_when_enter_pressed', 'N',
+  'subtype', 'TEXT',
+  'trim_spaces', 'BOTH')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8716739310792908)
+,p_name=>'P9998_LAST_NAME'
+,p_is_required=>true
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(8709107253751012)
+,p_prompt=>'Last Name'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>55
+,p_field_template=>1609122147107268652
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'disabled', 'N',
+  'submit_when_enter_pressed', 'N',
+  'subtype', 'TEXT',
+  'trim_spaces', 'BOTH')).to_clob
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(8723418706792917)
+,p_name=>'[Click] Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(8723374287792917)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(8724217003792921)
+,p_event_id=>wwv_flow_imp.id(8723418706792917)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(8709405320751015)
+,p_name=>'[Change] Check If Username/Email Are Unique'
+,p_event_sequence=>30
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_imp.id(8708932816751010)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(8709544581751016)
+,p_event_id=>wwv_flow_imp.id(8709405320751015)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'const targetId = this.browserEvent.target.id;',
+'',
+'if (targetId === ''P9998_USERNAME'') {',
+'    null;',
+'} else {',
+'    null;',
+'}'))
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(8709270115751013)
+,p_name=>'[Change] Check Password Rules'
+,p_event_sequence=>40
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_imp.id(8709075435751011)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(8709374341751014)
+,p_event_id=>wwv_flow_imp.id(8709270115751013)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'const targetId = this.browserEvent.target.id;',
+'const password = $v(''P9998_PASSWORD'');',
+'const passwordConfirm = $v(''P9998_PASSWORD_CONFIRM'');',
+'const minLength = 12;',
+'const hasNumber = /\d/;',
+'const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};'':"\\|,.<>\/?]/;',
+'const errors = [];',
+'',
+'    if (password.length < minLength) {',
+'        errors.push({message:''Password must be at least 12 characters.'', item:''P9998_PASSWORD''});',
+'    }',
+'',
+'    if (!hasNumber.test(password)) {',
+'        errors.push({message:''Password must contain at least one digit.'', item:''P9998_PASSWORD''});',
+'    }',
+'',
+'    if (!hasSpecial.test(password)) {',
+'        errors.push({message:''Password must contain at least one special character.'', item:''P9998_PASSWORD''});',
+'    }',
+'',
+'    if (password !== passwordConfirm) {',
+'        errors.push({message:''Passwords do not match.'', item:''P9998_PASSWORD_CONFIRM''});',
+'    }',
+'',
+'    apex.message.clearErrors();',
+'    if (errors.length > 0) {',
+'        errors.forEach(error => {',
+'            apex.message.showErrors({',
+'            type: ''error'',',
+'            location: ''inline'',',
+'            pageItem: error.item,',
+'            message: error.message ',
+'            })',
+'        })',
+'    }',
+' ',
+'',
+'',
+'',
+'',
+''))
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(8709780399751018)
+,p_name=>'[Click] Create User'
+,p_event_sequence=>50
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(8725586302792923)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(8709835370751019)
+,p_event_id=>wwv_flow_imp.id(8709780399751018)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'console.log(''Click'');'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8709692607751017)
+,p_process_sequence=>10
+,p_process_point=>'ON_DEMAND'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Check Username'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare ',
+'    l_username users.username%type;',
+'begin',
+'    null;',
+'',
+'exception ',
+'    when others then ',
+'        apex_json.open_object;',
+'        apex_json.write(''error'', true);',
+'        apex_json.write(''errorCode'', sqlcode);',
+'        apex_json.close_object;',
+'end;'))
+,p_process_clob_language=>'PLSQL'
+,p_internal_uid=>8709692607751017
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8709957252751020)
+,p_process_sequence=>20
+,p_process_point=>'ON_DEMAND'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Create User'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare ',
+'    l_user_rec   tapi_users.t_user_rec;',
+'',
+'begin',
+'    l_user_rec.username := apex_application.g_x01;',
+'    l_user_rec.email := apex_application.g_x02;',
+'    l_user_rec.password_hash := apex_application.g_x03;',
+'    l_user_rec.first_name := apex_application.g_x04;',
+'    l_user_rec.last_name := apex_application.g_x05;',
+'',
+'    l_user_rec.id := tapi_users.f_create_user(pi_user_rec => l_user_rec);',
+'',
+'    apex_json.open_object;',
+'        apex_json.write(''success'', true);',
+'        apex_json.write(''message'', ''User created'');',
+'    apex_json.close_object; ',
+'',
+'exception ',
+'    when others then ',
+'        apex_json.open_object;',
+'            apex_json.write(''error'', true);',
+'            apex_json.write(''errorCode'', sqlcode);',
+'        apex_json.close_object;',
+'end;'))
+,p_process_clob_language=>'PLSQL'
+,p_internal_uid=>8709957252751020
+);
+end;
+/
 prompt --application/pages/page_09999
 begin
 wwv_flow_imp_page.create_page(
@@ -1020,7 +1440,7 @@ wwv_flow_imp_page.create_page(
 ,p_first_item=>'AUTO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_step_template=>2101157952850466385
-,p_page_template_options=>'#DEFAULT#'
+,p_page_template_options=>'#DEFAULT#:t-LoginPage--split'
 ,p_page_is_public_y_n=>'Y'
 ,p_protection_level=>'C'
 ,p_page_component_map=>'12'
@@ -1039,18 +1459,30 @@ wwv_flow_imp_page.create_page_plug(
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(8402713840486745)
-,p_button_sequence=>40
+,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_imp.id(8401037125486736)
 ,p_button_name=>'LOGIN'
 ,p_button_action=>'SUBMIT'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>4072362960822175091
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>2082829544945815391
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Sign In'
 ,p_button_position=>'NEXT'
-,p_button_alignment=>'LEFT'
-,p_grid_new_row=>'Y'
-,p_grid_new_column=>'Y'
+,p_icon_css_classes=>'fa-cloud-upload'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8708042918751001)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_imp.id(8401037125486736)
+,p_button_name=>'SIGN_UP'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>2082829544945815391
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Sign Up'
+,p_button_position=>'NEXT'
+,p_button_redirect_url=>'f?p=&APP_ID.:9998:&SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-cloud-arrow-down'
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(8401516233486743)
@@ -1063,7 +1495,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>40
 ,p_cMaxlength=>100
 ,p_tag_attributes=>'autocomplete="username"'
-,p_label_alignment=>'RIGHT'
 ,p_field_template=>2040785906935475274
 ,p_item_icon_css_classes=>'fa-user'
 ,p_item_template_options=>'#DEFAULT#'
@@ -1085,7 +1516,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>40
 ,p_cMaxlength=>100
 ,p_tag_attributes=>'autocomplete="current-password"'
-,p_label_alignment=>'RIGHT'
 ,p_field_template=>2040785906935475274
 ,p_item_icon_css_classes=>'fa-key'
 ,p_item_template_options=>'#DEFAULT#'
@@ -1100,16 +1530,12 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_plug_id=>wwv_flow_imp.id(8401037125486736)
 ,p_prompt=>'Remember username'
 ,p_display_as=>'NATIVE_SINGLE_CHECKBOX'
-,p_label_alignment=>'RIGHT'
 ,p_display_when=>'apex_authentication.persistent_cookies_enabled'
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_field_template=>2040785906935475274
 ,p_item_template_options=>'#DEFAULT#'
-,p_escape_on_http_output=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'checked_value', '',
-  'unchecked_value', '',
   'use_defaults', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_process(
@@ -1159,6 +1585,8 @@ wwv_flow_imp_page.create_page_process(
 ,p_attribute_03=>'APEX_AUTHENTICATION'
 ,p_attribute_04=>'LOGIN'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>':LOGIN'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
 ,p_internal_uid=>8403095663486746
 );
 wwv_flow_imp_shared.create_invokeapi_comp_param(
@@ -1232,4 +1660,4 @@ prompt  ...done
 
 
 
--- sqlcl_snapshot {"hash":"984ef9548663fd5a62fdee8167fc61df51b57b93","type":"APEX_APPLICATIONS","name":"f100","schemaName":"FC_PM","sxml":""}
+-- sqlcl_snapshot {"hash":"32b0e6c38af13708ac5a347fc875eea5d555e912","type":"APEX_APPLICATIONS","name":"f100","schemaName":"FC_PM","sxml":""}

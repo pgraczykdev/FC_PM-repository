@@ -1,0 +1,870 @@
+---
+# ====== Page: Sign up =======================================
+id: 9998
+identification: 
+  name: Sign up
+  alias: SIGN-UP
+  title: Registration
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Drawer
+  template-options: 
+  - '#DEFAULT#'
+  - js-dialog-class-t-Drawer--pullOutEnd
+
+dialog: 
+  chained: true
+  resizable: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Is Public
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-meta-tags: false
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Account details =============================
+  id: 8708932816751010
+  identification: 
+    name: Account details
+    type: Static Content
+
+  source: 
+    html-code: <p>Both username and email must be unique.</p>
+
+  layout: 
+    sequence: 10
+    parent-region: Sign up # 8714419287792896
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Password ====================================
+  id: 8709075435751011
+  identification: 
+    name: Password
+    type: Static Content
+
+  source: 
+    html-code: |
+      <ul>
+          <li>Password must be at least 12 characters.</li>
+          <li>Password must contain at least one digit.</li>
+          <li>Password must contain at least one special character.</li>
+      </ul>
+
+  layout: 
+    sequence: 30
+    parent-region: Sign up # 8714419287792896
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Personal data ===============================
+  id: 8709107253751012
+  identification: 
+    name: Personal data
+    type: Static Content
+
+  layout: 
+    sequence: 40
+    parent-region: Sign up # 8714419287792896
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Sign up =====================================
+  id: 8714419287792896
+  identification: 
+    name: Sign up
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Buttons =====================================
+  id: 8722914372792916
+  identification: 
+    name: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P9998_PASSWORD_CONFIRM ===================
+  id: 8708114968751002
+  identification: 
+    name: P9998_PASSWORD_CONFIRM
+    type: Password
+
+  label: 
+    label: Confirm password
+    alignment: Left
+
+  settings: 
+    submit-when-enter-pressed: false
+
+  layout: 
+    sequence: 20
+    region: Password # 8709075435751011
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_USERNAME ===========================
+  id: 8715145085792907
+  identification: 
+    name: P9998_USERNAME
+    type: Text Field
+
+  label: 
+    label: Username
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Account details # 8708932816751010
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 50
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_EMAIL ==============================
+  id: 8715517852792908
+  identification: 
+    name: P9998_EMAIL
+    type: Text Field
+
+  label: 
+    label: Email
+    alignment: Left
+
+  settings: 
+    subtype: E-Mail
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 20
+    region: Account details # 8708932816751010
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 100
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_PASSWORD ===========================
+  id: 8715934352792908
+  identification: 
+    name: P9998_PASSWORD
+    type: Password
+
+  label: 
+    label: 'Password '
+    alignment: Left
+
+  settings: 
+    submit-when-enter-pressed: false
+
+  layout: 
+    sequence: 10
+    region: Password # 8709075435751011
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_FIRST_NAME =========================
+  id: 8716349210792908
+  identification: 
+    name: P9998_FIRST_NAME
+    type: Text Field
+
+  label: 
+    label: First Name
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Personal data # 8709107253751012
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 55
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_LAST_NAME ==========================
+  id: 8716739310792908
+  identification: 
+    name: P9998_LAST_NAME
+    type: Text Field
+
+  label: 
+    label: Last Name
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 20
+    region: Personal data # 8709107253751012
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 55
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 8723374287792917
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Buttons # 8722914372792916
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: CREATE ======================================
+  id: 8725586302792923
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 40
+    region: Buttons # 8722914372792916
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: [Change] Check Password Rules =======
+  id: 8709270115751013
+  identification: 
+    name: '[Change] Check Password Rules'
+
+  execution: 
+    sequence: 40
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Region
+    region: Password # 8709075435751011
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 8709374341751014
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        const targetId = this.browserEvent.target.id;
+        const password = $v('P9998_PASSWORD');
+        const passwordConfirm = $v('P9998_PASSWORD_CONFIRM');
+        const minLength = 12;
+        const hasNumber = /\d/;
+        const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        const errors = [];
+        
+            if (password.length < minLength) {
+                errors.push({message:'Password must be at least 12 characters.', item:'P9998_PASSWORD'});
+            }
+        
+            if (!hasNumber.test(password)) {
+                errors.push({message:'Password must contain at least one digit.', item:'P9998_PASSWORD'});
+            }
+        
+            if (!hasSpecial.test(password)) {
+                errors.push({message:'Password must contain at least one special character.', item:'P9998_PASSWORD'});
+            }
+        
+            if (password !== passwordConfirm) {
+                errors.push({message:'Passwords do not match.', item:'P9998_PASSWORD_CONFIRM'});
+            }
+        
+            apex.message.clearErrors();
+            if (errors.length > 0) {
+                errors.forEach(error => {
+                    apex.message.showErrors({
+                    type: 'error',
+                    location: 'inline',
+                    pageItem: error.item,
+                    message: error.message 
+                    })
+                })
+            }
+         
+        
+        
+        
+        
+        
+
+    execution: 
+      sequence: 10
+      event: '[Change] Check Password Rules' # 8709270115751013
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: [Change] Check If Username/Email Are 
+  id: 8709405320751015
+  identification: 
+    name: '[Change] Check If Username/Email Are Unique'
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Region
+    region: Account details # 8708932816751010
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 8709544581751016
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        const targetId = this.browserEvent.target.id;
+        
+        if (targetId === 'P9998_USERNAME') {
+            null;
+        } else {
+            null;
+        }
+
+    execution: 
+      sequence: 10
+      event: '[Change] Check If Username/Email Are Unique' # 8709405320751015
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: [Click] Create User =================
+  id: 8709780399751018
+  identification: 
+    name: '[Click] Create User'
+
+  execution: 
+    sequence: 50
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: CREATE # 8725586302792923
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 8709835370751019
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: console.log('Click');
+
+    execution: 
+      sequence: 10
+      event: '[Click] Create User' # 8709780399751018
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: [Click] Cancel Dialog ===============
+  id: 8723418706792917
+  identification: 
+    name: '[Click] Cancel Dialog'
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: CANCEL # 8723374287792917
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 8724217003792921
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: '[Click] Cancel Dialog' # 8723418706792917
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: Check Username =============================
+  id: 8709692607751017
+  identification: 
+    name: Check Username
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      declare 
+          l_username users.username%type;
+      begin
+          null;
+      
+      exception 
+          when others then 
+              apex_json.open_object;
+              apex_json.write('error', true);
+              apex_json.write('errorCode', sqlcode);
+              apex_json.close_object;
+      end;
+
+  execution: 
+    sequence: 10
+    point: Ajax Callback
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Create User ================================
+  id: 8709957252751020
+  identification: 
+    name: Create User
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      declare 
+          l_user_rec   tapi_users.t_user_rec;
+      
+      begin
+          l_user_rec.username := apex_application.g_x01;
+          l_user_rec.email := apex_application.g_x02;
+          l_user_rec.password_hash := apex_application.g_x03;
+          l_user_rec.first_name := apex_application.g_x04;
+          l_user_rec.last_name := apex_application.g_x05;
+      
+          l_user_rec.id := tapi_users.f_create_user(pi_user_rec => l_user_rec);
+      
+          apex_json.open_object;
+              apex_json.write('success', true);
+              apex_json.write('message', 'User created');
+          apex_json.close_object; 
+      
+      exception 
+          when others then 
+              apex_json.open_object;
+                  apex_json.write('error', true);
+                  apex_json.write('errorCode', sqlcode);
+              apex_json.close_object;
+      end;
+
+  execution: 
+    sequence: 20
+    point: Ajax Callback
+    run-process: Once Per Page Visit (default)
+

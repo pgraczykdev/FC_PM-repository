@@ -11,6 +11,7 @@ appearance:
   page-template: Login
   template-options: 
   - '#DEFAULT#'
+  - t-LoginPage--split
 
 navigation-menu: 
   override-user-interface-level: false
@@ -88,7 +89,7 @@ page-items:
 
   label: 
     label: Username
-    alignment: Right
+    alignment: Left
 
   settings: 
     subtype: Text
@@ -149,7 +150,7 @@ page-items:
 
   label: 
     label: Password
-    alignment: Right
+    alignment: Left
 
   settings: 
     submit-when-enter-pressed: true
@@ -203,7 +204,7 @@ page-items:
 
   label: 
     label: Remember username
-    alignment: Right
+    alignment: Left
 
   settings: 
     use-defaults: true
@@ -256,7 +257,7 @@ buttons:
     label: Sign In
 
   layout: 
-    sequence: 40
+    sequence: 20
     region: SC Preußen Münster # 8401037125486736
     slot: NEXT
     start-new-layout: false
@@ -266,15 +267,49 @@ buttons:
     column-span: Automatic
 
   appearance: 
-    button-template: Text
+    button-template: Text with Icon
     hot: true
     template-options: 
     - '#DEFAULT#'
+    - t-Button--iconLeft
+    icon: fa-cloud-upload
 
   behavior: 
     action: Submit Page
     execute-validations: true
     show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: SIGN_UP =====================================
+  id: 8708042918751001
+  identification: 
+    button-name: SIGN_UP
+    label: Sign Up
+
+  layout: 
+    sequence: 30
+    region: SC Preußen Münster # 8401037125486736
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text with Icon
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--iconLeft
+    icon: fa-cloud-arrow-down
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:9998:&SESSION.::&DEBUG.:::'
+      page: 9998 # Sign up
+
     warn-on-unsaved-changes: Do Not Check
 
 processes: 
@@ -298,6 +333,10 @@ processes:
 
   error: 
     display-location: Inline in Notification
+
+  server-side-condition: 
+    type: Request is contained in Value
+    value: ':LOGIN'
 
   parameters: 
   - # ====== Parameter: p_username ===============================

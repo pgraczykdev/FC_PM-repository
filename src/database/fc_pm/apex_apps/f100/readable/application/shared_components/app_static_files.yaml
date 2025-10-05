@@ -44,3 +44,21 @@
     mime-type: image/png
     file-character-set: Unicode UTF-8
 
+- # ====== Static Application File: UserRegistration.js ========
+  id: 8928741629651760
+  identification: 
+    file-name: UserRegistration.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: UserRegistration.min.js ====
+  id: 8931301482719433
+  identification: 
+    file-name: UserRegistration.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
